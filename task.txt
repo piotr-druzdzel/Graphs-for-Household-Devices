@@ -46,4 +46,3 @@ postal_code -> ZIP code for ip address
 
 4. Write a small python programm (python 2 or 3 are fine) to extract the "user_uuid" and "ip_address" values from the CSV file, 
 sort the user_uuids by overlapping ip_address and save them back to another, new CSV file.
-
