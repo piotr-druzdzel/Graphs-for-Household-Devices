@@ -1,0 +1,49 @@
+/// Device Graph Assignment ///
+
+We want to build a graph like structure reflecting real world households.
+
+We have a webserver log containing events from different devices, which are used within real households throughout the country.
+
+// Main Goal //
+
+The device graph should reflect the real world households where the devices live in.
+
+Two devices are considered "in the same household" if their user_uuid are different (two separate devices) but their ip address 
+overlap at some point (both devices used behind same router).
+
+// Situation //
+
+We have a household (visible through NAT IP address) containing several devices 
+(PCs, Tablets, Smartphones, Smart-Tvs). Several chracteristics of those devices will be shortlived 
+(like ip address due to carrier giving out new ip addresses) or have higher longevity 
+(cookie values with long lifetimes). We have access to multiple data streams (mostly ad server data) 
+to put togehter a data basis for building up the device graph.
+
+Our current datafile is provided with this package.
+
+// Data Description //
+
+event_time -> timestamp of the event (use https://www.unixtimestamp.com/index.php for conversion)
+user_uuid -> unique identifier (cookie_id) of device. Can be reset by user and will be given anew upon next request
+devicegroup -> type of device
+device -> more details about specific device manufacturer and model
+ip_address -> hash of ip address of device (hashed because of privacy reasons)
+os_family -> self explanatory
+os_name -> self explanatory
+browser_name -> self explanatory
+locode -> notation for geometric data about detected ip (e.g. DE-NW-CGN for Cologne)
+postal_code -> ZIP code for ip address
+
+// Tasks //
+
+1. Can we build a device graph based on real households with the data provided in the csv file?
+- note down the steps necessary to build a a household device graph
+
+2. Can we make any asumptions on the accuracy of the resulting model?
+- what about ip address changes, cookie deletions, access from cell towers with phones etc.
+
+3. What more data do we need to make the model better (more accuracy, more details)?
+
+4. Write a small python programm (python 2 or 3 are fine) to extract the "user_uuid" and "ip_address" values from the CSV file, 
+sort the user_uuids by overlapping ip_address and save them back to another, new CSV file.
+
